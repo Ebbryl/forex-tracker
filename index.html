@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Foreign Exchange Currency Tracker</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Foreign Exchange Currency Tracker</h1>
+        <div class="currency-converter">
+            <label for="base-currency">Base Currency:</label>
+            <select id="base-currency">
+                <option value="USD">USD</option>
+                <option value="EUR">EUR</option>
+                <!-- Add more currencies as needed -->
+            </select>
+
+            <label for="target-currency">Target Currency:</label>
+            <select id="target-currency">
+                <option value="EUR">EUR</option>
+                <option value="USD">USD</option>
+                <!-- Add more currencies as needed -->
+            </select>
+
+            <button onclick="fetchExchangeRate()">Convert</button>
+
+            <div id="exchange-rate-result"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
