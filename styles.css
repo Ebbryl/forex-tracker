@@ -1,42 +1,116 @@
+/* Font and color setup */
 body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f9;
+    font-family: 'Inter', sans-serif;
+    background-color: #f0f2f5;
     color: #333;
+    margin: 0;
+}
+
+.sidebar {
+    width: 80px;
+    background: #4B4EFC;
+    color: white;
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px 0;
+}
+
+.sidebar .logo {
+    font-size: 2.5em;
+    margin-bottom: 20px;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+}
+
+.sidebar ul li {
+    margin: 20px 0;
     text-align: center;
+    cursor: pointer;
 }
 
-.container {
-    margin-top: 50px;
+.sidebar ul li i {
+    font-size: 1.5em;
 }
 
-.currency-converter {
-    margin: 20px auto;
+.main-content {
+    margin-left: 100px;
     padding: 20px;
-    border: 1px solid #ddd;
-    background-color: #fff;
-    border-radius: 8px;
-    max-width: 400px;
 }
 
-label, select, button {
-    display: block;
-    margin: 10px 0;
-    width: 100%;
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+header h1 {
+    margin: 0;
+    font-weight: 600;
+}
+
+.clock {
+    font-size: 1.1em;
+    color: #666;
+}
+
+.dashboard {
+    display: flex;
+    gap: 20px;
+    flex-wrap: wrap;
+}
+
+.card {
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    flex: 1;
+    min-width: 280px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
 }
 
 button {
     padding: 10px;
-    background-color: #007bff;
+    background-color: #4B4EFC;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    margin-top: 10px;
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #3A3EDB;
 }
 
-.actions {
-    margin-top: 20px;
+.converter label, .converter select {
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+#exchange-rate-result {
+    margin-top: 10px;
+    font-weight: 600;
+}
+
+.json-preview {
+    background: #f9f9f9;
+    border-radius: 5px;
+    padding: 10px;
+    margin-top: 10px;
+    font-family: monospace;
+    overflow-x: auto;
+    max-height: 150px;
 }
