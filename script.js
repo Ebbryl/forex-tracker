@@ -1,57 +1,59 @@
-let latestRateData = {};
-
 async function fetchExchangeRate() {
     const baseCurrency = document.getElementById('base-currency').value;
     const targetCurrency = document.getElementById('target-currency').value;
-    const resultDiv = document.getElementById('exchange-rate-result');
-
     try {
+        // Simulate fetching data
         const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${baseCurrency}`);
         const data = await response.json();
 
+        // Show result in exchange-rate-result div
         const rate = data.rates[targetCurrency];
-        latestRateData = {
+        document.getElementById('exchange-rate-result').innerText = `1 ${baseCurrency} = ${rate} ${targetCurrency}`;
+
+        // Get current date in UTC
+        const currentDate = new Date().toISOString();
+
+        // Show JSON preview
+        const jsonData = {
             base: baseCurrency,
             target: targetCurrency,
             rate: rate,
-            date: data.date
+            date: currentDate
         };
+        document.getElementById('json-preview').innerText = JSON.stringify(jsonData, null, 2);
 
-        resultDiv.textContent = `1 ${baseCurrency} = ${rate} ${targetCurrency}`;
-        
-        // Enable buttons after data fetch
+        // Enable buttons
         document.getElementById('copy-btn').disabled = false;
         document.getElementById('download-btn').disabled = false;
-
     } catch (error) {
-        resultDiv.textContent = 'Error fetching exchange rate';
-        latestRateData = {};
-        document.getElementById('copy-btn').disabled = true;
-        document.getElementById('download-btn').disabled = true;
+        console.error('Error fetching exchange rate:', error);
     }
 }
 
 function copyToClipboard() {
-    const jsonString = JSON.stringify(latestRateData, null, 2);
-    navigator.clipboard.writeText(jsonString).then(() => {
+    const jsonData = document.getElementById('json-preview').innerText;
+    navigator.clipboard.writeText(jsonData).then(() => {
         alert('JSON copied to clipboard!');
     }).catch(err => {
-        console.error('Failed to copy: ', err);
+        console.error('Failed to copy:', err);
     });
 }
 
 function downloadJSON() {
-    const jsonString = JSON.stringify(latestRateData, null, 2);
-    const blob = new Blob([jsonString], { type: 'application/json' });
-    const url = URL.createObjectURL(blob);
-
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `exchange-rate-${latestRateData.base}-to-${latestRateData.target}.json`;
-    document.body.appendChild(a);
-    a.click();
-
-    // Cleanup
-    document.body.removeChild(a);
-    URL.revokeObjectURL(url);
+    const jsonData = document.getElementById('json-preview').innerText;
+    const blob = new Blob([jsonData], { type: 'application/json' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = 'exchange-rate.json';
+    link.click();
 }
+
+// Function to update the UTC time
+function updateUTCTime() {
+    const now = new Date();
+    const utcTime = now.toUTCString();
+    document.getElementById('utc-time').innerText = utcTime;
+}
+
+// Update the UTC time every second
+setInterval(updateUTCTime, 1000);

@@ -4,39 +4,57 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Foreign Exchange Currency Tracker</title>
+    <title>Currency Exchange Dashboard</title>
     <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
 </head>
 <body>
-    <div class="container">
-        <h1>Foreign Exchange Currency Tracker</h1>
-        <div class="currency-converter">
-            <label for="base-currency">Base Currency:</label>
-            <select id="base-currency">
-                <option value="USD">USD</option>
-                <option value="EUR">EUR</option>
-                <option value="IDR">IDR</option>
-                <!-- Add more currencies as needed -->
-            </select>
+    <div class="sidebar">
+        <div class="logo">💰</div> <!-- Money logo -->
+        <ul>
+            <li><i class="fas fa-home"></i> Home</li> <!-- Updated Home menu icon -->
+        </ul>
+    </div>
+    <div class="main-content">
+        <header>
+            <h1>Welcome to Currency Tracker!</h1>
+            <div id="utc-clock" class="clock">UTC Time: <span id="utc-time"></span></div> <!-- Clock showing UTC time -->
+        </header>
+        <section class="dashboard">
+            <div class="card">
+                <div class="card-content">
+                    <h2>Convert Currency</h2>
+                    <div class="converter">
+                        <label for="base-currency">Base Currency:</label>
+                        <select id="base-currency">
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="IDR">IDR</option>
+                            <!-- Add more currencies as needed -->
+                        </select>
 
-            <label for="target-currency">Target Currency:</label>
-            <select id="target-currency">
-                <option value="EUR">EUR</option>
-                <option value="USD">USD</option>
-                <option value="IDR">IDR</option>
-                <!-- Add more currencies as needed -->
-            </select>
+                        <label for="target-currency">Target Currency:</label>
+                        <select id="target-currency">
+                            <option value="EUR">EUR</option>
+                            <option value="USD">USD</option>
+                            <option value="IDR">IDR</option>
+                            <!-- Add more currencies as needed -->
+                        </select>
 
-            <button onclick="fetchExchangeRate()">Convert</button>
+                        <button onclick="fetchExchangeRate()">Convert</button>
 
-            <div id="exchange-rate-result"></div>
-
-            <!-- Buttons for copying and downloading JSON -->
-            <div class="actions">
+                        <div id="exchange-rate-result"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="card">
+                <h2>Actions</h2>
                 <button id="copy-btn" onclick="copyToClipboard()" disabled>Copy JSON</button>
                 <button id="download-btn" onclick="downloadJSON()" disabled>Download JSON</button>
+                <div id="json-preview" class="json-preview"></div> <!-- JSON preview section -->
             </div>
-        </div>
+        </section>
     </div>
 
     <script src="script.js"></script>
